@@ -1,0 +1,30 @@
+[
+  {
+    "BUSINESS_UNIT": "DRAM",
+    "PRODUCT_GROUP": "Server",
+    "매출": "1250",
+    "영업이익": "210",
+    "마진율": "16.8"
+  },
+  {
+    "BUSINESS_UNIT": "DRAM",
+    "PRODUCT_GROUP": "Mobile",
+    "매출": "980",
+    "영업이익": "145",
+    "마진율": "14.8"
+  },
+  {
+    "BUSINESS_UNIT": "FLASH",
+    "PRODUCT_GROUP": "Client SSD",
+    "매출": "-120",
+    "영업이익": "-35",
+    "마진율": "-29.2"
+  },
+  {
+    "BUSINESS_UNIT": "합계",
+    "PRODUCT_GROUP": "합계",
+    "매출": "2110",
+    "영업이익": "320",
+    "마진율": "15.2"
+  }
+]
