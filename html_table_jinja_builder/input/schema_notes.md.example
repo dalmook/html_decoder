@@ -1,0 +1,5 @@
+# Schema Notes (Example)
+- MST_PSI_SIMUL_REPORT: 메인 리포트 팩트
+- PERIOD 관련 컬럼 후보: WORKDATE, WEEK_CD, QUARTER, YM
+- 제품 축 컬럼 후보: BUSINESS_UNIT, PRODUCT_GROUP
+- 측정치 후보: SALES, OPERATING_PROFIT, MARGIN_PCT

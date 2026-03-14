@@ -1,0 +1,31 @@
+{
+  "cell_C3": "1250",
+  "cell_D3": "210",
+  "cell_F3": "1250",
+  "cell_G3": "210",
+  "cell_C4": "980",
+  "cell_D4": "145",
+  "cell_F4": "980",
+  "cell_G4": "145",
+  "cell_C5": "-120",
+  "cell_D5": "-35",
+  "cell_F5": "-120",
+  "cell_G5": "-35",
+  "cell_C6": "2110",
+  "cell_D6": "320",
+  "cell_F6": "2110",
+  "cell_G6": "320",
+  "cell_E3": null,
+  "cell_H3": null,
+  "cell_E4": null,
+  "cell_H4": null,
+  "cell_E5": null,
+  "cell_H5": null,
+  "cell_E6": null,
+  "cell_H6": null,
+  "report_meta": {
+    "generated_at": "2026-03-14T11:34:49.682525Z",
+    "row_count": 4,
+    "sql_file": "sql/user_query.sql"
+  }
+}

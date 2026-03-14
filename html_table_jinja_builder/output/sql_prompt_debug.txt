@@ -1,0 +1,676 @@
+당신의 역할: Oracle SQL 초안 생성 조력자.
+이 SQL은 '초안'이며 사용자가 최종 검토한다.
+
+요구사항:
+1) Oracle SQL
+2) SELECT/CTE ONLY (INSERT/UPDATE/DELETE/MERGE/DDL 금지)
+3) 숫자 포맷(to_char 등) 최소화, raw numeric 반환
+4) NULL 처리 고려
+5) 템플릿 렌더링용 placeholder 매핑 고려
+6) target shape: wide
+7) 가능하면 JSON 형식을 엄수하라.
+
+템플릿 요약(일부):
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>Sample Pasted Table</title>
+</head>
+<body>
+  <h2 style="font-family: Arial;">매출 요약</h2>
+  <table border="1" cellspacing="0" cellpadding="4" style="border-collapse:collapse;width:960px;font-family:Arial;font-size:12px;">
+    <colgroup>
+      <col style="width:180px;">
+      <col style="width:120px;">
+      <col style="width:120px;">
+      <col style="width:120px;">
+      <col style="width:120px;">
+      <col style="width:120px;">
+      <col style="width:120px;">
+      <col style="width:120px;">
+    </colgroup>
+    <tbody>
+      <tr>
+        <th rowspan="2" style="background:#d9e1f2;text-align:center;"><p>사업부</p></th>
+        <th rowspan="2" style="background:#d9e1f2;text-align:center;"><p>제품군</p></th>
+        <th colspan="3" style="background:#d9e1f2;text-align:center;"><span>2026.1Q</span></th>
+        <th colspan="3" style="background:#d9e1f2;text-align:center;"><span>2025.W32</span></th>
+      </tr>
+      <tr>
+        <th style="background:#eef3fb;">매출</th>
+        <th style="background:#eef3fb;">영업이익</th>
+        <th style="background:#eef3fb;">마진율</th>
+        <th style="background:#eef3fb;">매출</th>
+        <th style="background:#eef3fb;">영업이익</th>
+        <th style="background:#eef3fb;">마진율</th>
+      </tr>
+      <tr>
+        <td rowspan="2" style="font-weight:bold;background:#f9f9f9;"><p><span>DRAM</span></p></td>
+        <td><span>Server</span></td>
+        <td style="text-align:right;">{{ cell_C3 }}</td>
+      
+
+sql_shape.json:
+{
+  "template_name": "template.html.j2",
+  "placeholders": [
+    "cell_C3",
+    "cell_D3",
+    "cell_E3",
+    "cell_F3",
+    "cell_G3",
+    "cell_H3",
+    "cell_C4",
+    "cell_D4",
+    "cell_E4",
+    "cell_F4",
+    "cell_G4",
+    "cell_H4",
+    "cell_C5",
+    "cell_D5",
+    "cell_E5",
+    "cell_F5",
+    "cell_G5",
+    "cell_H5",
+    "cell_C6",
+    "cell_D6",
+    "cell_E6",
+    "cell_F6",
+    "cell_G6",
+    "cell_H6"
+  ],
+  "placeholder_groups": {
+    "label_header": [
+      "사업부",
+      "제품군",
+      "2026.1Q",
+      "2025.W32",
+      "매출",
+      "영업이익",
+      "마진율",
+      "DRAM",
+      "합계"
+    ],
+    "period": [
+      "2026.1Q"
+    ],
+    "numeric_value": [
+      "cell_C3",
+      "cell_D3",
+      "cell_E3",
+      "cell_F3",
+      "cell_G3",
+      "cell_H3",
+      "cell_C4",
+      "cell_D4",
+      "cell_E4",
+      "cell_F4",
+      "cell_G4",
+      "cell_H4",
+      "cell_C5",
+      "cell_D5",
+      "cell_E5",
+      "cell_F5",
+      "cell_G5",
+      "cell_H5",
+      "cell_C6",
+      "cell_D6",
+      "cell_E6",
+      "cell_F6",
+      "cell_G6",
+      "cell_H6"
+    ],
+    "total_subtotal": [
+      "합계"
+    ],
+    "delta_variance": [],
+    "computed": [
+      "마진율"
+    ],
+    "text": [
+      "매출",
+      "영업이익"
+    ]
+  },
+  "detected_layout": {
+    "header_rows": [
+      1,
+      2
+    ],
+    "header_cols": [
+      "A",
+      "B"
+    ],
+    "period_direction": "mixed",
+    "measure_direction": "vertical"
+  },
+  "recommended_shape_wide": {
+    "description": "가로 기간 + 행 차원 중심의 wide 결과셋 권장",
+    "grain_keys": [
+      "PERIOD",
+      "BUSINESS_UNIT",
+      "PRODUCT_GROUP"
+    ],
+    "dimension_columns": [
+      "PERIOD",
+      "BUSINESS_UNIT",
+      "PRODUCT_GROUP"
+    ],
+    "measure_columns": [
+      "SALES",
+      "OPERATING_PROFIT",
+      "MARGIN_PCT"
+    ],
+    "example_rows": [
+      {
+        "PERIOD": "2026Q1",
+        "BUSINESS_UNIT": "DRAM",
+        "PRODUCT_GROUP": "Server",
+        "SALES": 1250,
+        "OPERATING_PROFIT": 210,
+        "MARGIN_PCT": 16.8
+      }
+    ]
+  },
+  "recommended_shape_long": {
+    "description": "측정항목을 행으로 세운 long 결과셋 권장",
+    "grain_keys": [
+      "PERIOD",
+      "BUSINESS_UNIT",
+      "PRODUCT_GROUP",
+      "MEASURE"
+    ],
+    "dimension_columns": [
+      "PERIOD",
+      "BUSINESS_UNIT",
+      "PRODUCT_GROUP"
+    ],
+    "pivot_key_column": "MEASURE",
+    "value_column": "VALUE",
+    "example_rows": [
+      {
+        "PERIOD": "2026Q1",
+        "BUSINESS_UNIT": "DRAM",
+        "PRODUCT_GROUP": "Server",
+        "MEASURE": "SALES",
+        "VALUE": 1250
+      }
+    ]
+  },
+  "render_bindings": [
+    {
+      "placeholder": "cell_C3",
+      "expected_source": {
+        "shape": "wide",
+        "row_filter": {
+          "ROW_KEY_A": "DRAM",
+          "ROW_KEY_B": "Server"
+        },
+        "column": "매출",
+        "period": "2026.1Q"
+      },
+      "confidence": 0.92
+    },
+    {
+      "placeholder": "cell_D3",
+      "expected_source": {
+        "shape": "wide",
+        "row_filter": {
+          "ROW_KEY_A": "DRAM",
+          "ROW_KEY_B": "Server"
+        },
+        "column": "영업이익",
+        "period": "PERIOD"
+      },
+      "confidence": 0.92
+    },
+    {
+      "placeholder": "cell_E3",
+      "expected_source": {
+        "shape": "wide",
+        "row_filter": {
+          "ROW_KEY_A": "DRAM",
+          "ROW_KEY_B": "Server"
+        },
+        "column": "마진율",
+        "period": "PERIOD"
+      },
+      "confidence": 0.9
+    },
+    {
+      "placeholder": "cell_F3",
+      "expected_source": {
+        "shape": "wide",
+        "row_filter": {
+          "ROW_KEY_A": "DRAM",
+          "ROW_KEY_B": "Server"
+        },
+        "column": "매출",
+        "period": "2025.W32"
+      },
+      "confidence": 0.92
+    },
+    {
+      "placeholder": "cell_G3",
+      "expected_source": {
+        "shape": "wide",
+        "row_filter": {
+          "ROW_KEY_A": "DRAM",
+          "ROW_KEY_B": "Server"
+        },
+        "column": "영업이익",
+        "period": "PERIOD"
+      },
+      "confidence": 0.92
+    },
+    {
+      "placeholder": "cell_H3",
+      "expected_source": {
+        "shape": "wide",
+        "row_filter": {
+          "ROW_KEY_A": "DRAM",
+          "ROW_KEY_B": "Server"
+        },
+        "column": "마진율",
+        "period": "PERIOD"
+      },
+      "confidence": 0.9
+    },
+    {
+      "placeholder": "cell_C4",
+      "expected_source": {
+        "shape": "wide",
+        "row_filter": {
+          "ROW_KEY_B": "Mobile"
+        },
+        "column": "매출",
+        "period": "2026.1Q"
+      },
+      "confidence": 0.92
+    },
+    {
+      "placeholder": "cell_D4",
+      "expected_source": {
+        "shape": "wide",
+        "row_filter": {
+          "ROW_KEY_B": "Mobile"
+        },
+        "column": "영업이익",
+        "period": "PERIOD"
+      },
+      "confidence": 0.92
+    },
+    {
+      "placeholder": "cell_E4",
+      "expected_source": {
+        "shape": "wide",
+        "row_filter": {
+          "ROW_KEY_B": "Mobile"
+        },
+        "column": "마진율",
+        "period": "PERIOD"
+      },
+      "confidence": 0.9
+    },
+    {
+      "placeholder": "cell_F4",
+      "expected_source": {
+        "shape": "wide",
+        "row_filter": {
+          "ROW_KEY_B": "Mobile"
+        },
+        "column": "매출",
+        "period": "2025.W32"
+      },
+      "confidence": 0.92
+    },
+    {
+      "placeholder": "cell_G4",
+      "expected_source": {
+        "shape": "wide",
+        "row_filter": {
+          "ROW_KEY_B": "Mobile"
+        },
+        "column": "영업이익",
+        "period": "PERIOD"
+      },
+      "confidence": 0.92
+    },
+    {
+      "placeholder": "cell_H4",
+      "expected_source": {
+        "shape": "wide",
+        "row_filter": {
+          "ROW_KEY_B": "Mobile"
+        },
+        "column": "마진율",
+        "period": "PERIOD"
+      },
+      "confidence": 0.9
+    },
+    {
+      "placeholder": "cell_C5",
+      "expected_source": {
+        "shape": "wide",
+        "row_filter": {
+          "ROW_KEY_A": "FLASH",
+          "ROW_KEY_B": "Client SSD"
+        },
+        "column": "매출",
+        "period": "2026.1
+
+binding_spec.json:
+{
+  "cell_C3": {
+    "binding_type": "direct",
+    "source_shape": "wide",
+    "lookup": {
+      "row_keys": {
+        "ROW_KEY_A": "DRAM",
+        "ROW_KEY_B": "Server"
+      },
+      "column_headers": {
+        "HEADER_R1": "2026.1Q",
+        "HEADER_R2": "매출"
+      },
+      "value_column": "매출"
+    },
+    "format_hint": "number",
+    "confidence": 0.92,
+    "needs_review": false,
+    "formula_hint": null
+  },
+  "cell_D3": {
+    "binding_type": "direct",
+    "source_shape": "wide",
+    "lookup": {
+      "row_keys": {
+        "ROW_KEY_A": "DRAM",
+        "ROW_KEY_B": "Server"
+      },
+      "column_headers": {
+        "HEADER_R2": "영업이익"
+      },
+      "value_column": "영업이익"
+    },
+    "format_hint": "number",
+    "confidence": 0.92,
+    "needs_review": false,
+    "formula_hint": null
+  },
+  "cell_E3": {
+    "binding_type": "computed",
+    "source_shape": "wide",
+    "lookup": {
+      "row_keys": {
+        "ROW_KEY_A": "DRAM",
+        "ROW_KEY_B": "Server"
+      },
+      "column_headers": {
+        "HEADER_R2": "마진율"
+      },
+      "value_column": "마진율"
+    },
+    "format_hint": "percent",
+    "confidence": 0.9,
+    "needs_review": false,
+    "formula_hint": "(분자/분모) 또는 증감식 점검 필요"
+  },
+  "cell_F3": {
+    "binding_type": "direct",
+    "source_shape": "wide",
+    "lookup": {
+      "row_keys": {
+        "ROW_KEY_A": "DRAM",
+        "ROW_KEY_B": "Server"
+      },
+      "column_headers": {
+        "HEADER_R1": "2025.W32",
+        "HEADER_R2": "매출"
+      },
+      "value_column": "매출"
+    },
+    "format_hint": "number",
+    "confidence": 0.92,
+    "needs_review": false,
+    "formula_hint": null
+  },
+  "cell_G3": {
+    "binding_type": "direct",
+    "source_shape": "wide",
+    "lookup": {
+      "row_keys": {
+        "ROW_KEY_A": "DRAM",
+        "ROW_KEY_B": "Server"
+      },
+      "column_headers": {
+        "HEADER_R2": "영업이익"
+      },
+      "value_column": "영업이익"
+    },
+    "format_hint": "number",
+    "confidence": 0.92,
+    "needs_review": false,
+    "formula_hint": null
+  },
+  "cell_H3": {
+    "binding_type": "computed",
+    "source_shape": "wide",
+    "lookup": {
+      "row_keys": {
+        "ROW_KEY_A": "DRAM",
+        "ROW_KEY_B": "Server"
+      },
+      "column_headers": {
+        "HEADER_R2": "마진율"
+      },
+      "value_column": "마진율"
+    },
+    "format_hint": "percent",
+    "confidence": 0.9,
+    "needs_review": false,
+    "formula_hint": "(분자/분모) 또는 증감식 점검 필요"
+  },
+  "cell_C4": {
+    "binding_type": "direct",
+    "source_shape": "wide",
+    "lookup": {
+      "row_keys": {
+        "ROW_KEY_B": "Mobile"
+      },
+      "column_headers": {
+        "HEADER_R1": "2026.1Q",
+        "HEADER_R2": "매출"
+      },
+      "value_column": "매출"
+    },
+    "format_hint": "number",
+    "confidence": 0.92,
+    "needs_review": false,
+    "formula_hint": null
+  },
+  "cell_D4": {
+    "binding_type": "direct",
+    "source_shape": "wide",
+    "lookup": {
+      "row_keys": {
+        "ROW_KEY_B": "Mobile"
+      },
+      "column_headers": {
+        "HEADER_R2": "영업이익"
+      },
+      "value_column": "영업이익"
+    },
+    "format_hint": "number",
+    "confidence": 0.92,
+    "needs_review": false,
+    "formula_hint": null
+  },
+  "cell_E4": {
+    "binding_type": "computed",
+    "source_shape": "wide",
+    "lookup": {
+      "row_keys": {
+        "ROW_KEY_B": "Mobile"
+      },
+      "column_headers": {
+        "HEADER_R2": "마진율"
+      },
+      "value_column": "마진율"
+    },
+    "format_hint": "percent",
+    "confidence": 0.9,
+    "needs_review": false,
+    "formula_hint": "(분자/분모) 또는 증감식 점검 필요"
+  },
+  "cell_F4": {
+    "binding_type": "direct",
+    "source_shape": "wide",
+    "lookup": {
+      "row_keys": {
+        "ROW_KEY_B": "Mobile"
+      },
+      "column_headers": {
+        "HEADER_R1": "2025.W32",
+        "HEADER_R2": "매출"
+      },
+      "value_column": "매출"
+    },
+    "format_hint": "number",
+    "confidence": 0.92,
+    "needs_review": false,
+    "formula_hint": null
+  },
+  "cell_G4": {
+    "binding_type": "direct",
+    "source_shape": "wide",
+    "lookup": {
+      "row_keys": {
+        "ROW_KEY_B": "Mobile"
+      },
+      "column_headers": {
+        "HEADER_R2": "영업이익"
+      },
+      "value_column": "영업이익"
+    },
+    "format_hint": "number",
+    "confidence": 0.92,
+    "needs_review": false,
+    "formula_hint": null
+  },
+  "cell_H4": {
+    "binding_type": "computed",
+    "source_shape": "wide",
+    "lookup": {
+      "row_keys": {
+        "ROW_KEY_B": "Mobile"
+      },
+      "column_headers": {
+        "HEADER_R2": "마진율"
+      },
+      "value_column": "마진율"
+    },
+    "format_hint": "percent",
+    "confidence": 0.9,
+    "needs_review": false,
+    "formula_hint": "(분자/분모) 또는 증감식 점검 필요"
+  },
+  "cell_C5": {
+    "binding_type": "direct",
+    "source_shape": "wide",
+    "lookup": {
+      "row_keys": {
+        "ROW_KEY_A": "FLASH",
+        "ROW_KEY_B": "Client SSD"
+      },
+      "column_headers": {
+        "HEADER_R1": "2026.1Q",
+        "HEADER_R2": "매출"
+      },
+      "value_column": "매출"
+    },
+    "format_hint": "number",
+    "confidence": 0.92,
+    "needs_review": false,
+    "formula_hint": null
+  },
+  "cell_D5": {
+    "binding_type": "direct",
+    "source_shape": "wide",
+    "lookup": {
+      "row_keys": {
+        "ROW_KEY_A": "FLASH",
+        "ROW_KEY_B": "Client SSD"
+      },
+      "column_headers": {
+        "HEADER_R2": "영업이익"
+      },
+      "value_column": "영업이익"
+    },
+    "format_hint": "number",
+    "confidence": 0.92,
+    "needs_review": false,
+    "formula_hint": null
+  },
+  "cell_E5": {
+    "binding_type": "computed",
+    "source_shape": "wide",
+    "lookup": {
+      "row_keys": {
+        "ROW_KEY_A": "FLASH",
+        "ROW_KEY_B": "Client SSD"
+      },
+      "column_headers": {
+        "HEADER_R2": "마진율"
+      },
+      "value_column": "마진율"
+    },
+    "format_hint": "percent",
+    "confidence": 0.9,
+    "needs_review": false,
+    "formula_hint": "(분자/분모) 또는 증감식 점검 필요"
+  },
+  "cell_F5": {
+    "binding_type": "direct",
+    "source_shape": "wide",
+    "lookup": {
+      "row_keys": {
+        "ROW_KEY_A": "FLAS
+
+schema_notes.md:
+(없음)
+
+business_rules.md:
+(없음)
+
+example_sql count: 1
+-- example: sample_style.sql
+-- Example style SQL
+WITH base AS (
+    SELECT PERIOD, BUSINESS_UNIT, PRODUCT_GROUP, SALES, OPERATING_PROFIT, MARGIN_PCT
+    FROM your_fact_table
+)
+SELECT
+    PERIOD,
+    BUSINESS_UNIT,
+    PRODUCT_GROUP,
+    SALES,
+    OPERATING_PROFIT,
+    MARGIN_PCT
+FROM base
+
+
+반환 형식(JSON):
+{
+  "sql": "...",
+  "assumptions": ["..."],
+  "expected_output_shape": {
+    "grain_keys": ["..."],
+    "dimension_columns": ["..."],
+    "measure_columns": ["..."]
+  },
+  "binding_notes": [
+    {"placeholder":"cell_D5","mapping":"..."}
+  ],
+  "risks": ["..."]
+}

@@ -1,0 +1,59 @@
+{
+  "generated_at": "2026-03-14T11:34:44.565063Z",
+  "provider": {
+    "type": "http_chat_completions",
+    "base_url": "http://your-api-endpoint/v1/chat/completions",
+    "api_key_env": "LLM_API_KEY",
+    "api_key_masked": "",
+    "model": "your-model-name"
+  },
+  "inputs": {
+    "template": "output/template.html.j2",
+    "contract": "output/data_contract.json",
+    "shape": "output/sql_shape.json",
+    "binding": "output/binding_spec.json",
+    "schema_notes": null,
+    "business_rules": null,
+    "examples_used": [
+      "sample_style.sql"
+    ]
+  },
+  "fallback_used": true,
+  "response_parse_mode": "fallback",
+  "attempts": [
+    {
+      "attempt": 1,
+      "strict_json_prompt": false,
+      "llm_call_error": "Missing API key env: LLM_API_KEY",
+      "fallback_used": true,
+      "validator": {
+        "valid": true,
+        "issues": []
+      },
+      "review": {
+        "status": "pass",
+        "validator": {
+          "valid": true,
+          "issues": []
+        },
+        "notes": []
+      }
+    }
+  ],
+  "final_validator": {
+    "valid": true,
+    "issues": []
+  },
+  "final_review": {
+    "status": "pass",
+    "validator": {
+      "valid": true,
+      "issues": []
+    },
+    "notes": []
+  },
+  "preview": {
+    "executed": false,
+    "reason": "preview.enabled is false in config"
+  }
+}

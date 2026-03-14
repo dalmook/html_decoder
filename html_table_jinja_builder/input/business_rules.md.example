@@ -1,0 +1,4 @@
+# Business Rules (Example)
+- TTL(합계)은 항목별 집계를 사용
+- 비율값(마진율)은 SQL에서 문자열 포맷 없이 numeric으로 반환
+- 전주대비/증감은 필요 시 별도 CTE에서 계산
