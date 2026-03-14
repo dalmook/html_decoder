@@ -1,0 +1,75 @@
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>Sample Pasted Table</title>
+</head>
+<body>
+  <h2 style="font-family: Arial;">매출 요약</h2>
+  <table border="1" cellspacing="0" cellpadding="4" style="border-collapse:collapse;width:960px;font-family:Arial;font-size:12px;">
+    <colgroup>
+      <col style="width:180px;">
+      <col style="width:120px;">
+      <col style="width:120px;">
+      <col style="width:120px;">
+      <col style="width:120px;">
+      <col style="width:120px;">
+      <col style="width:120px;">
+      <col style="width:120px;">
+    </colgroup>
+    <tbody>
+      <tr>
+        <th rowspan="2" style="background:#d9e1f2;text-align:center;"><p>사업부</p></th>
+        <th rowspan="2" style="background:#d9e1f2;text-align:center;"><p>제품군</p></th>
+        <th colspan="3" style="background:#d9e1f2;text-align:center;"><span>2026.1Q</span></th>
+        <th colspan="3" style="background:#d9e1f2;text-align:center;"><span>2025.W32</span></th>
+      </tr>
+      <tr>
+        <th style="background:#eef3fb;">매출</th>
+        <th style="background:#eef3fb;">영업이익</th>
+        <th style="background:#eef3fb;">마진율</th>
+        <th style="background:#eef3fb;">매출</th>
+        <th style="background:#eef3fb;">영업이익</th>
+        <th style="background:#eef3fb;">마진율</th>
+      </tr>
+      <tr>
+        <td rowspan="2" style="font-weight:bold;background:#f9f9f9;"><p><span>DRAM</span></p></td>
+        <td><span>Server</span></td>
+        <td style="text-align:right;">{{ cell_C3 }}</td>
+        <td style="text-align:right;">{{ cell_D3 }}</td>
+        <td style="text-align:right;">{{ cell_E3 }}</td>
+        <td style="text-align:right;">{{ cell_F3 }}</td>
+        <td style="text-align:right;">{{ cell_G3 }}</td>
+        <td style="text-align:right;">{{ cell_H3 }}</td>
+      </tr>
+      <tr>
+        <td><span>Mobile</span></td>
+        <td style="text-align:right;">{{ cell_C4 }}</td>
+        <td style="text-align:right;">{{ cell_D4 }}</td>
+        <td style="text-align:right;">{{ cell_E4 }}</td>
+        <td style="text-align:right;">{{ cell_F4 }}</td>
+        <td style="text-align:right;">{{ cell_G4 }}</td>
+        <td style="text-align:right;">{{ cell_H4 }}</td>
+      </tr>
+      <tr>
+        <td style="font-weight:bold;background:#f9f9f9;"><p>FLASH</p></td>
+        <td><span>Client SSD</span></td>
+        <td style="text-align:right;">{{ cell_C5 }}</td>
+        <td style="text-align:right;">{{ cell_D5 }}</td>
+        <td style="text-align:right;">{{ cell_E5 }}</td>
+        <td style="text-align:right;">{{ cell_F5 }}</td>
+        <td style="text-align:right;">{{ cell_G5 }}</td>
+        <td style="text-align:right;">{{ cell_H5 }}</td>
+      </tr>
+      <tr>
+        <td colspan="2" style="font-weight:bold;background:#fde9d9;">합계</td>
+        <td style="text-align:right;font-weight:bold;">{{ cell_C6 }}</td>
+        <td style="text-align:right;font-weight:bold;">{{ cell_D6 }}</td>
+        <td style="text-align:right;font-weight:bold;">{{ cell_E6 }}</td>
+        <td style="text-align:right;font-weight:bold;">{{ cell_F6 }}</td>
+        <td style="text-align:right;font-weight:bold;">{{ cell_G6 }}</td>
+        <td style="text-align:right;font-weight:bold;">{{ cell_H6 }}</td>
+      </tr>
+    </tbody>
+  </table>
+</body>
+</html>

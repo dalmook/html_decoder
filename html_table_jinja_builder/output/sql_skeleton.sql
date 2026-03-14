@@ -1,0 +1,30 @@
+-- SQL Skeleton (Oracle-friendly)
+-- 목적: 템플릿 placeholder 바인딩 가능한 결과셋 준비
+
+/* Wide Shape 버전 */
+WITH base AS (
+    SELECT
+        /* TODO: 실제 소스 컬럼으로 교체 */
+        PERIOD, BUSINESS_UNIT, PRODUCT_GROUP,
+        SALES, OPERATING_PROFIT, MARGIN_PCT
+    FROM your_source
+)
+SELECT
+    PERIOD, BUSINESS_UNIT, PRODUCT_GROUP,
+    SALES, OPERATING_PROFIT, MARGIN_PCT
+FROM base;
+
+/* Long Shape 버전 */
+WITH base AS (
+    SELECT PERIOD, BUSINESS_UNIT, PRODUCT_GROUP, SALES, OPERATING_PROFIT, MARGIN_PCT
+    FROM your_source
+), unpivoted AS (
+    SELECT PERIOD, BUSINESS_UNIT, PRODUCT_GROUP, 'SALES' AS MEASURE, SALES AS VALUE FROM base
+    UNION ALL
+    SELECT PERIOD, BUSINESS_UNIT, PRODUCT_GROUP, 'OPERATING_PROFIT' AS MEASURE, OPERATING_PROFIT AS VALUE FROM base
+    UNION ALL
+    SELECT PERIOD, BUSINESS_UNIT, PRODUCT_GROUP, 'MARGIN_PCT' AS MEASURE, MARGIN_PCT AS VALUE FROM base
+)
+SELECT * FROM unpivoted;
+
+-- placeholder 대응은 output/binding_spec.json 참조
