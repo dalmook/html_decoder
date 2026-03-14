@@ -1,0 +1,24 @@
+{
+  "provider": {
+    "type": "http_chat_completions",
+    "base_url": "http://your-api-endpoint/v1/chat/completions",
+    "api_key_env": "LLM_API_KEY",
+    "model": "your-model-name",
+    "timeout_sec": 120,
+    "temperature": 0.1,
+    "max_tokens": 4000
+  },
+  "generation": {
+    "dialect": "oracle",
+    "target_shape": "wide",
+    "include_self_review": true,
+    "max_retry": 2,
+    "require_cte_style": true,
+    "forbid_dml": true,
+    "forbid_semicolon_multiple": true
+  },
+  "preview": {
+    "enabled": false,
+    "allow_db_execution": false
+  }
+}
