@@ -1,0 +1,25 @@
+{
+  "db": {
+    "host": "swgxpd08-vip.sec.samsung.net",
+    "port": 2521,
+    "service_name": "MEMSCM",
+    "user": "memscm",
+    "password": "",
+    "client_lib_dir": "",
+    "encoding": "UTF-8"
+  },
+  "runtime": {
+    "shape_preference": "wide",
+    "case_insensitive_columns": true,
+    "strip_strings": true,
+    "write_debug_files": true,
+    "sql_path": "sql/user_query.sql",
+    "contract_path": "output/data_contract.json",
+    "shape_path": "output/sql_shape.json",
+    "binding_path": "output/binding_spec.json"
+  },
+  "render": {
+    "template_path": "output/template.html.j2",
+    "default_output_path": "output/final_report.html"
+  }
+}

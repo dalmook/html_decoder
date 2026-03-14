@@ -1,0 +1,82 @@
+{
+  "generated_at": "2026-03-14T11:27:34.975774Z",
+  "summary": {
+    "query_executed": true,
+    "row_count": 4,
+    "column_list": [
+      "BUSINESS_UNIT",
+      "PRODUCT_GROUP",
+      "매출",
+      "영업이익",
+      "마진율"
+    ],
+    "binding_success_count": 16,
+    "binding_warning_count": 8,
+    "missing_placeholders": [],
+    "computed_placeholders": 8
+  },
+  "entries": [
+    {
+      "level": "warning",
+      "code": "BIND_COMPUTED_PARSE_SKIP",
+      "message": "Cannot parse formula for cell_E3",
+      "placeholder": "cell_E3",
+      "formula_hint": "(분자/분모) 또는 증감식 점검 필요"
+    },
+    {
+      "level": "warning",
+      "code": "BIND_COMPUTED_PARSE_SKIP",
+      "message": "Cannot parse formula for cell_H3",
+      "placeholder": "cell_H3",
+      "formula_hint": "(분자/분모) 또는 증감식 점검 필요"
+    },
+    {
+      "level": "warning",
+      "code": "BIND_COMPUTED_PARSE_SKIP",
+      "message": "Cannot parse formula for cell_E4",
+      "placeholder": "cell_E4",
+      "formula_hint": "(분자/분모) 또는 증감식 점검 필요"
+    },
+    {
+      "level": "warning",
+      "code": "BIND_COMPUTED_PARSE_SKIP",
+      "message": "Cannot parse formula for cell_H4",
+      "placeholder": "cell_H4",
+      "formula_hint": "(분자/분모) 또는 증감식 점검 필요"
+    },
+    {
+      "level": "warning",
+      "code": "BIND_COMPUTED_PARSE_SKIP",
+      "message": "Cannot parse formula for cell_E5",
+      "placeholder": "cell_E5",
+      "formula_hint": "(분자/분모) 또는 증감식 점검 필요"
+    },
+    {
+      "level": "warning",
+      "code": "BIND_COMPUTED_PARSE_SKIP",
+      "message": "Cannot parse formula for cell_H5",
+      "placeholder": "cell_H5",
+      "formula_hint": "(분자/분모) 또는 증감식 점검 필요"
+    },
+    {
+      "level": "warning",
+      "code": "BIND_COMPUTED_PARSE_SKIP",
+      "message": "Cannot parse formula for cell_E6",
+      "placeholder": "cell_E6",
+      "formula_hint": "(분자/분모) 또는 증감식 점검 필요"
+    },
+    {
+      "level": "warning",
+      "code": "BIND_COMPUTED_PARSE_SKIP",
+      "message": "Cannot parse formula for cell_H6",
+      "placeholder": "cell_H6",
+      "formula_hint": "(분자/분모) 또는 증감식 점검 필요"
+    },
+    {
+      "level": "warning",
+      "code": "RENDER_FALLBACK",
+      "message": "Jinja2 unavailable/failure. Fallback renderer used.",
+      "error": "No module named 'jinja2'"
+    }
+  ]
+}
