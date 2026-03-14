@@ -1,0 +1,430 @@
+{
+  "cell_C3": {
+    "binding_type": "direct",
+    "source_shape": "wide",
+    "lookup": {
+      "row_keys": {
+        "ROW_KEY_A": "DRAM",
+        "ROW_KEY_B": "Server"
+      },
+      "column_headers": {
+        "HEADER_R1": "2026.1Q",
+        "HEADER_R2": "매출"
+      },
+      "value_column": "매출"
+    },
+    "format_hint": "number",
+    "confidence": 0.92,
+    "needs_review": false,
+    "formula_hint": null
+  },
+  "cell_D3": {
+    "binding_type": "direct",
+    "source_shape": "wide",
+    "lookup": {
+      "row_keys": {
+        "ROW_KEY_A": "DRAM",
+        "ROW_KEY_B": "Server"
+      },
+      "column_headers": {
+        "HEADER_R2": "영업이익"
+      },
+      "value_column": "영업이익"
+    },
+    "format_hint": "number",
+    "confidence": 0.92,
+    "needs_review": false,
+    "formula_hint": null
+  },
+  "cell_E3": {
+    "binding_type": "computed",
+    "source_shape": "wide",
+    "lookup": {
+      "row_keys": {
+        "ROW_KEY_A": "DRAM",
+        "ROW_KEY_B": "Server"
+      },
+      "column_headers": {
+        "HEADER_R2": "마진율"
+      },
+      "value_column": "마진율"
+    },
+    "format_hint": "percent",
+    "confidence": 0.9,
+    "needs_review": false,
+    "formula_hint": "(분자/분모) 또는 증감식 점검 필요"
+  },
+  "cell_F3": {
+    "binding_type": "direct",
+    "source_shape": "wide",
+    "lookup": {
+      "row_keys": {
+        "ROW_KEY_A": "DRAM",
+        "ROW_KEY_B": "Server"
+      },
+      "column_headers": {
+        "HEADER_R1": "2025.W32",
+        "HEADER_R2": "매출"
+      },
+      "value_column": "매출"
+    },
+    "format_hint": "number",
+    "confidence": 0.92,
+    "needs_review": false,
+    "formula_hint": null
+  },
+  "cell_G3": {
+    "binding_type": "direct",
+    "source_shape": "wide",
+    "lookup": {
+      "row_keys": {
+        "ROW_KEY_A": "DRAM",
+        "ROW_KEY_B": "Server"
+      },
+      "column_headers": {
+        "HEADER_R2": "영업이익"
+      },
+      "value_column": "영업이익"
+    },
+    "format_hint": "number",
+    "confidence": 0.92,
+    "needs_review": false,
+    "formula_hint": null
+  },
+  "cell_H3": {
+    "binding_type": "computed",
+    "source_shape": "wide",
+    "lookup": {
+      "row_keys": {
+        "ROW_KEY_A": "DRAM",
+        "ROW_KEY_B": "Server"
+      },
+      "column_headers": {
+        "HEADER_R2": "마진율"
+      },
+      "value_column": "마진율"
+    },
+    "format_hint": "percent",
+    "confidence": 0.9,
+    "needs_review": false,
+    "formula_hint": "(분자/분모) 또는 증감식 점검 필요"
+  },
+  "cell_C4": {
+    "binding_type": "direct",
+    "source_shape": "wide",
+    "lookup": {
+      "row_keys": {
+        "ROW_KEY_B": "Mobile"
+      },
+      "column_headers": {
+        "HEADER_R1": "2026.1Q",
+        "HEADER_R2": "매출"
+      },
+      "value_column": "매출"
+    },
+    "format_hint": "number",
+    "confidence": 0.92,
+    "needs_review": false,
+    "formula_hint": null
+  },
+  "cell_D4": {
+    "binding_type": "direct",
+    "source_shape": "wide",
+    "lookup": {
+      "row_keys": {
+        "ROW_KEY_B": "Mobile"
+      },
+      "column_headers": {
+        "HEADER_R2": "영업이익"
+      },
+      "value_column": "영업이익"
+    },
+    "format_hint": "number",
+    "confidence": 0.92,
+    "needs_review": false,
+    "formula_hint": null
+  },
+  "cell_E4": {
+    "binding_type": "computed",
+    "source_shape": "wide",
+    "lookup": {
+      "row_keys": {
+        "ROW_KEY_B": "Mobile"
+      },
+      "column_headers": {
+        "HEADER_R2": "마진율"
+      },
+      "value_column": "마진율"
+    },
+    "format_hint": "percent",
+    "confidence": 0.9,
+    "needs_review": false,
+    "formula_hint": "(분자/분모) 또는 증감식 점검 필요"
+  },
+  "cell_F4": {
+    "binding_type": "direct",
+    "source_shape": "wide",
+    "lookup": {
+      "row_keys": {
+        "ROW_KEY_B": "Mobile"
+      },
+      "column_headers": {
+        "HEADER_R1": "2025.W32",
+        "HEADER_R2": "매출"
+      },
+      "value_column": "매출"
+    },
+    "format_hint": "number",
+    "confidence": 0.92,
+    "needs_review": false,
+    "formula_hint": null
+  },
+  "cell_G4": {
+    "binding_type": "direct",
+    "source_shape": "wide",
+    "lookup": {
+      "row_keys": {
+        "ROW_KEY_B": "Mobile"
+      },
+      "column_headers": {
+        "HEADER_R2": "영업이익"
+      },
+      "value_column": "영업이익"
+    },
+    "format_hint": "number",
+    "confidence": 0.92,
+    "needs_review": false,
+    "formula_hint": null
+  },
+  "cell_H4": {
+    "binding_type": "computed",
+    "source_shape": "wide",
+    "lookup": {
+      "row_keys": {
+        "ROW_KEY_B": "Mobile"
+      },
+      "column_headers": {
+        "HEADER_R2": "마진율"
+      },
+      "value_column": "마진율"
+    },
+    "format_hint": "percent",
+    "confidence": 0.9,
+    "needs_review": false,
+    "formula_hint": "(분자/분모) 또는 증감식 점검 필요"
+  },
+  "cell_C5": {
+    "binding_type": "direct",
+    "source_shape": "wide",
+    "lookup": {
+      "row_keys": {
+        "ROW_KEY_A": "FLASH",
+        "ROW_KEY_B": "Client SSD"
+      },
+      "column_headers": {
+        "HEADER_R1": "2026.1Q",
+        "HEADER_R2": "매출"
+      },
+      "value_column": "매출"
+    },
+    "format_hint": "number",
+    "confidence": 0.92,
+    "needs_review": false,
+    "formula_hint": null
+  },
+  "cell_D5": {
+    "binding_type": "direct",
+    "source_shape": "wide",
+    "lookup": {
+      "row_keys": {
+        "ROW_KEY_A": "FLASH",
+        "ROW_KEY_B": "Client SSD"
+      },
+      "column_headers": {
+        "HEADER_R2": "영업이익"
+      },
+      "value_column": "영업이익"
+    },
+    "format_hint": "number",
+    "confidence": 0.92,
+    "needs_review": false,
+    "formula_hint": null
+  },
+  "cell_E5": {
+    "binding_type": "computed",
+    "source_shape": "wide",
+    "lookup": {
+      "row_keys": {
+        "ROW_KEY_A": "FLASH",
+        "ROW_KEY_B": "Client SSD"
+      },
+      "column_headers": {
+        "HEADER_R2": "마진율"
+      },
+      "value_column": "마진율"
+    },
+    "format_hint": "percent",
+    "confidence": 0.9,
+    "needs_review": false,
+    "formula_hint": "(분자/분모) 또는 증감식 점검 필요"
+  },
+  "cell_F5": {
+    "binding_type": "direct",
+    "source_shape": "wide",
+    "lookup": {
+      "row_keys": {
+        "ROW_KEY_A": "FLASH",
+        "ROW_KEY_B": "Client SSD"
+      },
+      "column_headers": {
+        "HEADER_R1": "2025.W32",
+        "HEADER_R2": "매출"
+      },
+      "value_column": "매출"
+    },
+    "format_hint": "number",
+    "confidence": 0.92,
+    "needs_review": false,
+    "formula_hint": null
+  },
+  "cell_G5": {
+    "binding_type": "direct",
+    "source_shape": "wide",
+    "lookup": {
+      "row_keys": {
+        "ROW_KEY_A": "FLASH",
+        "ROW_KEY_B": "Client SSD"
+      },
+      "column_headers": {
+        "HEADER_R2": "영업이익"
+      },
+      "value_column": "영업이익"
+    },
+    "format_hint": "number",
+    "confidence": 0.92,
+    "needs_review": false,
+    "formula_hint": null
+  },
+  "cell_H5": {
+    "binding_type": "computed",
+    "source_shape": "wide",
+    "lookup": {
+      "row_keys": {
+        "ROW_KEY_A": "FLASH",
+        "ROW_KEY_B": "Client SSD"
+      },
+      "column_headers": {
+        "HEADER_R2": "마진율"
+      },
+      "value_column": "마진율"
+    },
+    "format_hint": "percent",
+    "confidence": 0.9,
+    "needs_review": false,
+    "formula_hint": "(분자/분모) 또는 증감식 점검 필요"
+  },
+  "cell_C6": {
+    "binding_type": "direct",
+    "source_shape": "wide",
+    "lookup": {
+      "row_keys": {
+        "ROW_KEY_A": "합계"
+      },
+      "column_headers": {
+        "HEADER_R1": "2026.1Q",
+        "HEADER_R2": "매출"
+      },
+      "value_column": "매출"
+    },
+    "format_hint": "number",
+    "confidence": 0.92,
+    "needs_review": false,
+    "formula_hint": null
+  },
+  "cell_D6": {
+    "binding_type": "direct",
+    "source_shape": "wide",
+    "lookup": {
+      "row_keys": {
+        "ROW_KEY_A": "합계"
+      },
+      "column_headers": {
+        "HEADER_R2": "영업이익"
+      },
+      "value_column": "영업이익"
+    },
+    "format_hint": "number",
+    "confidence": 0.92,
+    "needs_review": false,
+    "formula_hint": null
+  },
+  "cell_E6": {
+    "binding_type": "computed",
+    "source_shape": "wide",
+    "lookup": {
+      "row_keys": {
+        "ROW_KEY_A": "합계"
+      },
+      "column_headers": {
+        "HEADER_R2": "마진율"
+      },
+      "value_column": "마진율"
+    },
+    "format_hint": "percent",
+    "confidence": 0.9,
+    "needs_review": false,
+    "formula_hint": "(분자/분모) 또는 증감식 점검 필요"
+  },
+  "cell_F6": {
+    "binding_type": "direct",
+    "source_shape": "wide",
+    "lookup": {
+      "row_keys": {
+        "ROW_KEY_A": "합계"
+      },
+      "column_headers": {
+        "HEADER_R1": "2025.W32",
+        "HEADER_R2": "매출"
+      },
+      "value_column": "매출"
+    },
+    "format_hint": "number",
+    "confidence": 0.92,
+    "needs_review": false,
+    "formula_hint": null
+  },
+  "cell_G6": {
+    "binding_type": "direct",
+    "source_shape": "wide",
+    "lookup": {
+      "row_keys": {
+        "ROW_KEY_A": "합계"
+      },
+      "column_headers": {
+        "HEADER_R2": "영업이익"
+      },
+      "value_column": "영업이익"
+    },
+    "format_hint": "number",
+    "confidence": 0.92,
+    "needs_review": false,
+    "formula_hint": null
+  },
+  "cell_H6": {
+    "binding_type": "computed",
+    "source_shape": "wide",
+    "lookup": {
+      "row_keys": {
+        "ROW_KEY_A": "합계"
+      },
+      "column_headers": {
+        "HEADER_R2": "마진율"
+      },
+      "value_column": "마진율"
+    },
+    "format_hint": "percent",
+    "confidence": 0.9,
+    "needs_review": false,
+    "formula_hint": "(분자/분모) 또는 증감식 점검 필요"
+  }
+}

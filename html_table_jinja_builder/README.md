@@ -1,52 +1,55 @@
 # html_table_jinja_builder
 
-PowerPoint/Excel에서 복붙한 HTML 표를 입력받아 다음 산출물을 만드는 1단계 도구입니다.
+PowerPoint/Excel에서 복붙한 HTML 표를 입력받아 템플릿/계약 생성(1단계)과 SQL shape 설계 문서화(2단계)까지 수행하는 도구입니다.
 
-- `template.html.j2`: 원본 표 구조/스타일을 최대 유지한 Jinja2 템플릿
-- `data_contract.json`: 셀 메타데이터 + placeholder 매핑 계약
-- `mock_data.json`: 독립 렌더링 가능한 샘플 데이터
-- `rendered_preview.html`: 템플릿 렌더링 결과
+## 1단계: HTML 표 → 템플릿/계약/mock
 
-## 설치
+산출물
+- `output/template.html.j2`
+- `output/data_contract.json`
+- `output/mock_data.json`
+- `output/rendered_preview.html`
 
-Python 3.11 기준
-
-```bash
-pip install beautifulsoup4 lxml jinja2
-```
-
-## 실행
-
+실행
 ```bash
 python build_template.py --input input/sample_table.html --output-dir output
 python render_demo.py --template output/template.html.j2 --data output/mock_data.json --out output/rendered_preview.html
 ```
 
-## 후보 셀 판별 규칙(1단계)
+## 2단계: 템플릿 요구 구조 분석 → SQL shape/가이드 생성
 
-아래 패턴을 우선 치환 후보(`is_candidate=true`)로 판별합니다.
+입력
+- `output/template.html.j2`
+- `output/data_contract.json`
+- `output/mock_data.json`
 
-- 숫자/천단위 숫자/소수점/음수
-- `%` 값
-- 기간성 값(`26.1Q`, `2Q`, `25.W32` 등)
-- 본문 영역에서 반복 데이터처럼 보이는 짧은 값
+산출물
+- `output/sql_shape.json`
+- `output/binding_spec.json`
+- `output/sql_prompt.md`
+- `output/sql_skeleton.sql`
+- `output/mapping_guide.md`
 
-다음 항목은 기본 유지합니다.
+실행
+```bash
+python infer_sql_shape.py --template output/template.html.j2 --contract output/data_contract.json --outdir output
+python make_sql_docs.py --shape output/sql_shape.json --contract output/data_contract.json --outdir output
+```
 
-- `th` 헤더 셀
-- 대표 헤더 키워드(`DRAM`, `FLASH`, `합계` 등)
+추론 포인트(규칙 기반)
+- period 패턴(quarter/week/month)
+- total/ttl 패턴
+- measure-like 텍스트(판매/재고/risk/wip 등)
+- computed 후보(비율/%/증감 등)
 
-> 후보 여부는 `data_contract.json`에 함께 기록되므로 사람이 사후 수정 가능합니다.
+## 확장 구조
 
-## 한계사항
+향후 LLM 연동을 위해 인터페이스를 분리했습니다.
+- `BaseShapeAdvisor`
+- `RuleBasedShapeAdvisor`
+- `LLMShapeAdvisor`(stub)
 
-- 후보 판별은 규칙 기반이며 문맥을 완전히 이해하지는 못합니다.
-- 복합 텍스트가 많은 셀에서는 첫 번째 주요 텍스트 노드를 기준으로 치환합니다.
-- 다중 테이블 문서는 지원하지만, 현재는 단순 순서 기반으로 처리합니다.
+## 다음 단계 예고
 
-## 다음 단계(확장 포인트)
-
-- LLM 연동 후보 정제(비즈니스 문맥 기반)
-- SQL shape 자동 추천기
-- Oracle 실행기/적재 파이프라인 연결
-
+- 3단계: 사용자가 작성한 SQL을 입력하면 실제 렌더링까지 수행하는 독립 실행기
+- 4단계: LLM API 기반 SQL 초안 자동 생성기
